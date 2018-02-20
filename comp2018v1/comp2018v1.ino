@@ -25,10 +25,6 @@
 #define RIGHT_BASE_START 121
 #define RIGHT_BASE_COUNT 14
 
-
-
-
-
 boolean highGear = false;
 boolean redTeam = true;
 boolean nameBlinkOn = false;
