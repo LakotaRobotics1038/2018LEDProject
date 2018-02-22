@@ -13,7 +13,7 @@ void setup()
 void loop()
 {
   // put your main code here, to run repeatedly:
-  rotate (GOLD, BLUE, 3, 50);
+  rotate (MAROON, OLDLACE, 3, 300);
 }
 
 void rotate (unsigned long colora, unsigned long colorb, byte longshort, unsigned long wait)
