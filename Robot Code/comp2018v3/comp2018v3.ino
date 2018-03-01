@@ -41,65 +41,103 @@ void setup()
 
 void loop()
 {
-  /*FUTURE LED KID: use a switch case to set the
-    variables. We were too lazy to change it this
-    year. Or come up with something better. Honestly,
-    this code sucks.*/
   for (int wait = 0; wait < 50; wait++)       //delay loop (wait 10 : ani 1)
   {
     byte var = Serial.read();                      //read serial
-    if (var == 'H')                 //gear
+    switch (var)
     {
-      highGear = true;
-    }
-    else if (var == 'L')
-    {
-      highGear = false;
-    }
-    else if (var == 'R')            //team and comp mode
-    {
-      redTeam = true;
-      mode = 1;
-    }
-    else if (var == 'B')
-    {
-      redTeam = false;
-      mode = 1;
-    }
-    else if (var == 's')            //tower
-    {
-      tower = 0;
-    }
-    else if (var == 'f')
-    {
-      tower = 1;
-    }
-    else if (var == 'p')
-    {
-      tower = 2;
-    }
-    else if (var == 'a')
-    {
-      tower = 3;
-    }
-    else if (var == 'u')
-    {
-      tower = 4;
-    }
-    else if (var == 'd')
-    {
-      tower = 5;
-    }
-    else if (var == 'D')          //mode
-    {
-      mode = 0;
-    }
-    else if (var == 'E')
-    {
-      mode = 2;
+      case 'H':
+        highGear = true;
+        break;
+      case 'L':
+        highGear = false;
+        break;
+      case 'R':
+        redTeam = true;
+        mode = 1;
+        break;
+      case 'B':
+        redTeam = false;
+        mode = 1;
+        break;
+      case 's':           //tower
+        tower = 0;
+        break;
+      case 'f':
+        tower = 1;
+        break;
+      case 'p':
+        tower = 2;
+        break;
+      case 'a':
+        tower = 3;
+        break;
+      case 'u':
+        tower = 4;
+        break;
+      case 'd':
+        tower = 5;
+        break;
+      case 'D':          //mode
+        mode = 0;
+        break;
+      case 'E':
+        mode = 2;
+        break;
     }
     delay (1);
-  }
+//    if (var == 'H')                 //gear
+//    {
+//      highGear = true;
+//    }
+//    else if (var == 'L')
+//    {
+//      highGear = false;
+//    }
+//    else if (var == 'R')            //team and comp mode
+//    {
+//      redTeam = true;
+//      mode = 1;
+//    }
+//    else if (var == 'B')
+//    {
+//      redTeam = false;
+//      mode = 1;
+//    }
+//    else if (var == 's')            //tower
+//    {
+//      tower = 0;
+//    }
+//    else if (var == 'f')
+//    {
+//      tower = 1;
+//    }
+//    else if (var == 'p')
+//    {
+//      tower = 2;
+//    }
+//    else if (var == 'a')
+//    {
+//      tower = 3;
+//    }
+//    else if (var == 'u')
+//    {
+//      tower = 4;
+//    }
+//    else if (var == 'd')
+//    {
+//      tower = 5;
+//    }
+//    else if (var == 'D')          //mode
+//    {
+//      mode = 0;
+//    }
+//    else if (var == 'E')
+//    {
+//      mode = 2;
+//    }
+    }
+
 
   ++ani;              //updates all animations
 
