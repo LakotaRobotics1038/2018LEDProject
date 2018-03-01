@@ -313,6 +313,25 @@ void rotate (unsigned long colora, unsigned long colorb, byte longshort)    //ro
       leds.setPixelColor(i - j - 1, colora);
     }
   }
+    if (!nameBlinkOn && ani % 10 == 1)
+  {
+    leds.setPixelColor(ledNum, DEEPPINK);
+    nameBlinkOn = true;  if (!nameBlinkOn && ani % 10 == 1)
+  {
+    leds.setPixelColor(ledNum, DEEPPINK);
+    nameBlinkOn = true;
+  }
+  else
+  {
+    leds.setPixelColor(ledNum, BLACK);
+    nameBlinkOn = false;
+  }
+  }
+  else
+  {
+    leds.setPixelColor(ledNum, BLACK);
+    nameBlinkOn = false;
+  }
 }
 
 
