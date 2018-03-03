@@ -51,7 +51,8 @@ void loop()
     this code sucks.*/
   for (int wait = 0; wait < 50; wait++)       //delay loop (wait 10 : ani 1)
   {
-    byte var = Serial.read();                      //read serial
+    byte var = Serial.read();
+    //read serial
     switch (var)
     {
       case 'H':
@@ -216,7 +217,7 @@ void blinker(int ledNum)                                 //blinking cursor
 {
   if (!nameBlinkOn && ani % 10 == 1)
   {
-    leds.setPixelColor(ledNum, DEEPPINK);
+    leds.setPixelColor(ledNum, WHITE);
     nameBlinkOn = true;
   }
   else
@@ -313,25 +314,7 @@ void rotate (unsigned long colora, unsigned long colorb, byte longshort, byte ma
       leds.setPixelColor(i - j - 1, colora);
     }
   }
-    if (!nameBlinkOn && ani % 10 == 1)
-  {
-    leds.setPixelColor(BLINKER_START, DEEPPINK);
-    nameBlinkOn = true;
-  }
-  else
-  {
-    leds.setPixelColor(BLINKER_START, BLACK);
-    nameBlinkOn = false;
-  }  if (!nameBlinkOn && ani % 10 == 1)
-  {
-    leds.setPixelColor(BLINKER_START, DEEPPINK);
-    nameBlinkOn = true;
-  }
-  else
-  {
-    leds.setPixelColor(BLINKER_START, BLACK);
-    nameBlinkOn = false;
-  }
+  blinker (BLINKER_START); 
 }
 
 

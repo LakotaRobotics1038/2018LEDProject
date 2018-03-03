@@ -25,7 +25,7 @@ boolean highGear = false;
 boolean redTeam = true;
 boolean nameBlinkOn = false;
 boolean towerBlinkOn = false;
-int tower = 0;
+int tower = 6;
 int ani = 0;
 int mode = 0;
 
@@ -84,59 +84,12 @@ void loop()
       case 'E':
         mode = 2;
         break;
-    }
+      case 'n':
+        tower = 6;
+        break;
+     }
     delay (1);
-//    if (var == 'H')                 //gear
-//    {
-//      highGear = true;
-//    }
-//    else if (var == 'L')
-//    {
-//      highGear = false;
-//    }
-//    else if (var == 'R')            //team and comp mode
-//    {
-//      redTeam = true;
-//      mode = 1;
-//    }
-//    else if (var == 'B')
-//    {
-//      redTeam = false;
-//      mode = 1;
-//    }
-//    else if (var == 's')            //tower
-//    {
-//      tower = 0;
-//    }
-//    else if (var == 'f')
-//    {
-//      tower = 1;
-//    }
-//    else if (var == 'p')
-//    {
-//      tower = 2;
-//    }
-//    else if (var == 'a')
-//    {
-//      tower = 3;
-//    }
-//    else if (var == 'u')
-//    {
-//      tower = 4;
-//    }
-//    else if (var == 'd')
-//    {
-//      tower = 5;
-//    }
-//    else if (var == 'D')          //mode
-//    {
-//      mode = 0;
-//    }
-//    else if (var == 'E')
-//    {
-//      mode = 2;
-//    }
-    }
+  }
 
 
   ++ani;              //updates all animations
@@ -158,7 +111,7 @@ void loop()
   switch (mode)                             //mode
   {
     case 0:                     //demo mode (our team colors)
-      rotate (BLUE, PURPLE, 5);
+      rotate (BLUE, PURPLE, 5, LED_COUNT);
       break;
     case 1:                     //comp mode (the important stuff)
       for (int i = 0; i < LED_COUNT; i++)
@@ -179,10 +132,12 @@ void loop()
         {
           nameNumber(i);
         }
+        /*
         if (i >= NUMBER_TOP_START && i < NUMBER_TOP_START + NUMBER_TOP_COUNT || i >= NUMBER_BOTTOM_START && i < NUMBER_BOTTOM_START + NUMBER_BOTTOM_COUNT)
         {
           nameNumber(i);
         }
+        */
       }
       break;
     case 2:                     //E-stop mode (RAINBOW)
@@ -235,7 +190,7 @@ void towerLights(int ledNum)
       leds.setPixelColor(ledNum, ORANGE);
       break;
     case 2:    //robot is in the process of accquiring
-      leds.setPixelColor(ledNum, DARKVIOLET);
+      leds.setPixelColor(ledNum, RED);
       break;
     case 3:   //robot finishes accquiring: whole tower is green while it has the cube
       leds.setPixelColor(ledNum, GREEN);
@@ -246,21 +201,22 @@ void towerLights(int ledNum)
      case 5: //elevator with cube is going up
     cascade(DEEPPINK, ledNum);
     break;
+    case 6:
+    rotate(BLUE, PURPLE, 5, LEFT_TOWER_COUNT + RIGHT_TOWER_COUNT);
+    break;
           
   }
 }
 
 void blinker(int ledNum)                                 //blinking cursor
 {
-  if (!nameBlinkOn && ani % 10 == 1)
+  if (ani % 10 < 6)
   {
-    leds.setPixelColor(ledNum, DEEPPINK);
-    nameBlinkOn = true;
+    leds.setPixelColor(ledNum, WHITE);
   }
   else
   {
     leds.setPixelColor(ledNum, BLACK);
-    nameBlinkOn = false;
   }
 }
 
@@ -325,11 +281,11 @@ uint32_t rainbowOrder(byte position)
   }
 }
 
-void rotate (unsigned long colora, unsigned long colorb, byte longshort)    //rotate code
+void rotate (unsigned long colora, unsigned long colorb, byte longshort, byte maxLength)    //rotate code
 /* I'm sorry this code is poorly written, but it works
   so I'm not going to try to make it more efficent. Sorry*/
 {
-  for (int i = ani; i < LED_COUNT; i = i + longshort * 2)         //sets LEDs in front of ani pixle
+  for (int i = ani; i < maxLength; i = i + longshort * 2)         //sets LEDs in front of ani pixle
   {
     for (int j = 0; j < longshort; j++)                 //sets first color
     {
@@ -351,25 +307,7 @@ void rotate (unsigned long colora, unsigned long colorb, byte longshort)    //ro
       leds.setPixelColor(i - j - 1, colora);
     }
   }
-    if (!nameBlinkOn && ani % 10 == 1)
-  {
-    leds.setPixelColor(ledNum, DEEPPINK);
-    nameBlinkOn = true;  if (!nameBlinkOn && ani % 10 == 1)
-  {
-    leds.setPixelColor(ledNum, DEEPPINK);
-    nameBlinkOn = true;
-  }
-  else
-  {
-    leds.setPixelColor(ledNum, BLACK);
-    nameBlinkOn = false;
-  }
-  }
-  else
-  {
-    leds.setPixelColor(ledNum, BLACK);
-    nameBlinkOn = false;
-  }
+  blinker(BLINKER_START);
 }
 
 
