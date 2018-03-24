@@ -163,7 +163,7 @@ void nameNumber(int ledNum)
   }
   else
   {
-    leds.setPixelColor(ledNum, MAROON);
+    leds.setPixelColor(ledNum, PURPLE);
   }
 }
 void wheelWells(int ledNum)
@@ -196,10 +196,10 @@ void towerLights(int ledNum)
         leds.setPixelColor(ledNum, ORANGE);
         break;
     case 2:    //robot is in the process of accquiring
-        leds.setPixelColor(ledNum, DARKVIOLET);
+        leds.setPixelColor(ledNum, GREEN);
         break;
     case 3:   //robot finishes accquiring: whole tower is green while it has the cube
-        leds.setPixelColor(ledNum, GREEN);
+        leds.setPixelColor(ledNum, RED);
         break;
     case 4: //elevator with cube is going down.
         cascade(ORANGE, ledNum);
