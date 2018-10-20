@@ -1,18 +1,32 @@
 #include <Adafruit_NeoPixel.h>
 #include "WS2812_Definitions.h"
 
-#define PIN 4
-#define LED_COUNT 150
-Adafruit_NeoPixel leds = Adafruit_NeoPixel(LED_COUNT, PIN, NEO_GRB + NEO_KHZ800);
+// defines the test string
+#define TEST_PIN 8
+#define LED_COUNT 20
+Adafruit_NeoPixel leds = Adafruit_NeoPixel(LED_COUNT, TEST_PIN, NEO_GRB + NEO_KHZ800);
+
+//defines the power LED
+#define POWER_PIN 4
+#define POWER_COUNT 1
+Adafruit_NeoPixel power = Adafruit_NeoPixel(POWER_COUNT, POWER_PIN, NEO_GRB + NEO_KHZ800);
+
 void setup()
 {
   // put your setup code here, to run once:
+  power.begin();
   leds.begin();
 }
 
 void loop()
 {
   // put your main code here, to run repeatedly:
+  
+  //whenever its on, turn this light green
+  power.setPixelColor(0, GREEN);
+  power.show();
+
+  
   cascade (BLUE, TOP_DOWN, 10);
   cascade (PURPLE, TOP_DOWN, 10);
 }
